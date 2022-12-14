@@ -1,5 +1,5 @@
 from: docx
-input-file: input/miniscope2s-manuscript.docx
+input-file: input/manuscript.docx
 to: markdown-simple_tables
 output-file: input/manuscript.md
 markdown-headings: atx

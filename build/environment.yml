@@ -17,6 +17,8 @@ dependencies:
   - watchdog==2.1.9
   - weasyprint=53.4
   - yamllint=1.28.0
+  - pandas
+  - black
   - pip:
     - cffi==1.15.0
     - errorhandler==2.0.1
