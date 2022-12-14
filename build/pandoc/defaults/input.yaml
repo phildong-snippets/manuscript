@@ -1,0 +1,7 @@
+from: docx
+input-file: input/miniscope2s-manuscript.docx
+to: markdown-simple_tables
+output-file: input/manuscript.md
+markdown-headings: atx
+wrap: preserve
+track-changes: accept

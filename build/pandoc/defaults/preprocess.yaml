@@ -1,15 +1,16 @@
 # Pandoc --defaults shared between Manubot output formats.
 from: markdown
 input-file: output/manuscript.md
+output-file: output/manuscript.md
 filters:
-  - pagebreak.lua
-  - citeproc
+  - pandoc-fignos
+  - pandoc-eqnos
+  - pandoc-tablenos
+  - pandoc-manubot-cite
+  - fix_references.py
 wrap: preserve
 metadata:
   csl: build/assets/style.csl
   link-citations: true
-  geometry:
-    - margin=1in
-  mainfont: Arial
-  fontsize: 11pt
-  bibliography: output/references.json
+  fignos-cleveref: true
+  fignos-plus-name: "Figure"
