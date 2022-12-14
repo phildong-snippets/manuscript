@@ -10,13 +10,16 @@ def action(elem, doc):
     if isinstance(elem, pf.Image):
         fpath = os.path.join(ROOT_PATH, elem.url)
         if fpath.endswith(".svg"):
-            dpi = float(doc.get_metadata("dpi"))
+            dpi = float(doc.get_metadata("dpi", 100))
             svg = ET.parse(fpath).getroot()
             pat = re.compile(r"([\d\.]+)px")
-            width = float(re.search(pat, svg.attrib["width"]).group(1))
-            height = float(re.search(pat, svg.attrib["height"]).group(1))
-            elem.attributes["width"] = "{}in".format(width / dpi)
-            elem.attributes["height"] = "{}in".format(height / dpi)
+            try:
+                width = float(re.search(pat, svg.attrib["width"]).group(1))
+                height = float(re.search(pat, svg.attrib["height"]).group(1))
+                elem.attributes["width"] = "{}in".format(width / dpi)
+                elem.attributes["height"] = "{}in".format(height / dpi)
+            except AttributeError:
+                pass
             return elem
 
 
