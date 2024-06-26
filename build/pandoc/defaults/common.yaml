@@ -10,6 +10,6 @@ metadata:
   link-citations: true
   geometry:
     - margin=1in
-  mainfont: Arial Unicode MS
+  mainfont: Arial
   fontsize: 11pt
   bibliography: output/references.json
