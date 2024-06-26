@@ -1,6 +1,5 @@
 output-file: output/manuscript.pdf
 filters:
-  - scale_im.py
   - auto_contfloat.py
 pdf-engine: xelatex
 template: default.tex

@@ -3,13 +3,33 @@ from: markdown
 input-file: output/manuscript.md
 filters:
   - pagebreak.lua
+  - pandoc-crossref
   - citeproc
+  - scale_im.py
 wrap: preserve
 metadata:
+  tables: true
+  graphics: true
   csl: build/assets/style.csl
   link-citations: true
+  dpi: 110
   geometry:
-    - margin=1in
+    - margin=0.8in
   mainfont: Arial
+  mathfont: XITS Math # install https://github.com/aliftype/xits
   fontsize: 11pt
   bibliography: output/references.json
+  cref: true
+  chapters: true
+  linkReferences: true
+  lofItemTitle: Figure
+  lotItemTitle: Table
+  figPrefix:
+    - Figure
+    - Figures
+  tblPrefix:
+    - Table
+    - Tables
+  chapters: True
+  chaptersDepth: 1
+  chapDelim: ""

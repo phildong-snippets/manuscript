@@ -3,6 +3,8 @@
 to: docx
 output-file: output/manuscript.docx
 reference-doc: build/themes/default.docx
+filters:
+  - strip-title.lua
 resource-path:
   - "."
   - content
