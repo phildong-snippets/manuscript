@@ -17,7 +17,7 @@ if __name__ == "__main__":
         article = split_article(src_ls)
     with open(os.path.join(ORG_FOLDER, "01.abstract.md")) as f:
         abstract_org = f.readlines()
-    with open(os.path.join(ORG_FOLDER, "02.delete-me.md")) as f:
+    with open(os.path.join(ORG_FOLDER, "02.main.md")) as f:
         main_org = f.readlines()
     with open(os.path.join(ORG_FOLDER, "90.back-matter.md")) as f:
         back_org = f.readlines()
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     os.makedirs(DIFF_FOLDER, exist_ok=True)
     with open(os.path.join(OUTPUT_FOLDER, "01.abstract.md"), mode="w") as f:
         f.writelines(abstract_new)
-    with open(os.path.join(OUTPUT_FOLDER, "02.delete-me.md"), mode="w") as f:
+    with open(os.path.join(OUTPUT_FOLDER, "02.main.md"), mode="w") as f:
         f.writelines(main_new)
     with open(os.path.join(OUTPUT_FOLDER, "90.back-matter.md"), mode="w") as f:
         f.writelines(back_new)

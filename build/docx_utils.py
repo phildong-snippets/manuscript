@@ -73,7 +73,7 @@ def citations(line, cite_dict):
 def split_article(src_ls):
     # ln_author = src_ls.index("## Authors\n")
     ln_abstract = src_ls.index("## Abstract\n")
-    ln_main = src_ls.index("## Basic formatting\n")
+    ln_main = src_ls.index("## Introduction\n")
     ln_back = src_ls.index("## References\n")
     return {
         "front-matter": src_ls[:ln_abstract],
