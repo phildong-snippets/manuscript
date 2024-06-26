@@ -18,7 +18,7 @@ def action(elem, doc):
                 height = float(re.search(pat, svg.attrib["height"]).group(1))
                 elem.attributes["width"] = "{}in".format(width / dpi)
                 elem.attributes["height"] = "{}in".format(height / dpi)
-            except AttributeError:
+            except (AttributeError, KeyError):
                 pass
             return elem
 
