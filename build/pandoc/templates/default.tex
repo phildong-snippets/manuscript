@@ -150,6 +150,12 @@ $if(CJKmainfont)$
   \fi
 $endif$
 \fi
+%% custom - use ucharclasses to support symbols
+%% requires installation of https://archive.org/details/ARIALUNI_201803
+\usepackage{fontspec}
+\newfontfamily{\symbolfont}{Arial Unicode MS}
+\usepackage[Dingbats]{ucharclasses}
+\setTransitionTo{Dingbats}{\symbolfont}
 $if(zero-width-non-joiner)$
 %% Support for zero-width non-joiner characters.
 \makeatletter
