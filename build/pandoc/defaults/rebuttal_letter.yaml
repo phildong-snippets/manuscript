@@ -1,0 +1,28 @@
+from: markdown-fancy_lists
+to: docx
+filters:
+  - pandoc-manubot-cite
+  - pandoc-crossref
+  - citeproc
+  - scale_im.py
+wrap: preserve
+metadata:
+  dpi: 97
+  suppress-bibliography: true
+  link-citations: true
+  cref: true
+  figPrefix:
+    - Figure
+    - Figures
+  tblPrefix:
+    - Table
+    - Tables
+  lstPrefix:
+    - Supplementary File
+    - Supplementary Files
+  listingTitle: Supplementary File
+  codeBlockCaptions: true
+reference-doc: build/themes/rebuttal_letter.docx
+resource-path:
+  - "."
+  - content

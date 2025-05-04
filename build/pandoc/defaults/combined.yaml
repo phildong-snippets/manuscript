@@ -1,0 +1,10 @@
+# Pandoc --defaults for DOCX output.
+# Load on top of common defaults.
+to: docx
+output-file: output/combined.docx
+reference-doc: build/themes/default.docx
+filters:
+  - strip-title.lua
+resource-path:
+  - "."
+  - content

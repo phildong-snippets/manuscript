@@ -1,0 +1,9 @@
+to: docx
+output-file: output/supp_materials.docx
+reference-doc: build/themes/default.docx
+filters:
+  - remove_custom_style.py
+  - extract_section.py
+resource-path:
+  - "."
+  - content

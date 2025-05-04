@@ -1,0 +1,17 @@
+# Pandoc --defaults for DOCX output.
+# Load on top of common defaults.
+to: docx
+output-file: output/clean_manuscript.docx
+reference-doc: build/themes/default.docx
+filters:
+  - strip-title.lua
+  - remove_custom_style.py
+  - build_toc.py
+  - remove_section.py
+  - move_figures_to_end.py
+  - move_tables_to_end.py
+  - remove_images.py
+  - pagebreak.lua
+resource-path:
+  - "."
+  - content
