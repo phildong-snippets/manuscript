@@ -30,6 +30,11 @@ metadata:
   tblPrefix:
     - Table
     - Tables
+  lstPrefix:
+    - Supplementary File
+    - Supplementary Files
+  listingTitle: Supplementary File
   chapters: True
   chaptersDepth: 1
   chapDelim: ""
+  codeBlockCaptions: true
