@@ -1,4 +1,3 @@
-name: manubot
 channels:
   - conda-forge
 dependencies:
@@ -21,10 +20,11 @@ dependencies:
   - pandas
   - black
   - pandoc-crossref
+  - scikit-image
   - pip:
       - cffi==1.15.0
       - errorhandler==2.0.1
-      - git+https://github.com/manubot/manubot@6e6f6a5aac381120faf3ef02e594b5babc77da2b
+      - manubot==0.6
       - isbnlib==3.10.10
       - opentimestamps-client==0.7.1
       - opentimestamps==0.4.3
