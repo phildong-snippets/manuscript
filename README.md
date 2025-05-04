@@ -71,6 +71,12 @@ The following command, while running, will trigger both the `build.sh` script an
 bash build/autobuild.sh
 ```
 
+Additionally, use the following command to build rebuttal letters that incorporate changes from manuscript and highlight them in the manuscript:
+
+```sh
+REBUTTAL_PATH="path_to_rebuttal_folder" bash build/build.sh
+```
+
 ### Continuous Integration
 
 Whenever a pull request is opened, CI (continuous integration) will test whether the changes break the build process to generate a formatted manuscript.

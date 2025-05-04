@@ -26,20 +26,47 @@ MANUBOT_USE_DOCKER="${MANUBOT_USE_DOCKER:-$DOCKER_RUNNING}"
 # located in the $PANDOC_DATA_DIR/defaults directory.
 PANDOC_DATA_DIR="${PANDOC_DATA_DIR:-build/pandoc}"
 
+# Determine rebuttal stuff
+if [ ! -z "${REBUTTAL_PATH:-}" ]; then
+  BUILD_REBUTTAL=true
+  CONTENT_PATH=build/content_cache
+else
+  BUILD_REBUTTAL=false
+  CONTENT_PATH=content
+fi
+
+# Run rebuttal processing
+if [ "$BUILD_REBUTTAL" = true ]; then
+  echo >&2 "Processing rebuttal"
+  python build/process_rebuttal.py "$REBUTTAL_PATH" "$CONTENT_PATH"
+fi
+
+# Generate rebuttal letter
+if [ "$BUILD_REBUTTAL" = true ]; then
+  echo >&2 "Exporting rebuttal letter"
+  pandoc \
+    --data-dir="$PANDOC_DATA_DIR" \
+    --defaults=rebuttal_letter.yaml \
+    -o output/rebuttal_letter.docx \
+    "$CONTENT_PATH/rebuttal_letter.md"
+fi
+
 # Generate reference information
 echo >&2 "Retrieving and processing reference metadata"
 manubot process \
-  --content-directory=content \
+  --content-directory="$CONTENT_PATH" \
   --output-directory=output \
   --cache-directory=ci/cache \
   --skip-citations \
   --log-level=INFO
 pandoc --verbose \
   --data-dir="$PANDOC_DATA_DIR" \
-  --defaults=preprocess.yaml \
+  --defaults=preprocess.yaml
 
 # Make output directory
 mkdir -p output
+rm -rf output/images
+cp -r content/images output/images
 
 # Create HTML output
 # https://pandoc.org/MANUAL.html
@@ -89,11 +116,29 @@ fi
 
 # Create DOCX output (if BUILD_DOCX environment variable equals "true")
 if [ "${BUILD_DOCX}" = "true" ]; then
-  echo >&2 "Exporting Word Docx manuscript"
-  pandoc --verbose \
-    --data-dir="$PANDOC_DATA_DIR" \
-    --defaults=common.yaml \
-    --defaults=docx.yaml
+  if [ "$BUILD_REBUTTAL" = true ]; then
+    echo >&2 "Exporting rebuttal materials"
+    pandoc --verbose \
+      --data-dir="$PANDOC_DATA_DIR" \
+      --defaults=common.yaml \
+      --defaults=combined.yaml
+
+    pandoc --verbose \
+      --data-dir="$PANDOC_DATA_DIR" \
+      --defaults=common.yaml \
+      --defaults=clean_manuscript.yaml
+
+    pandoc --verbose \
+      --data-dir="$PANDOC_DATA_DIR" \
+      --defaults=common.yaml \
+      --defaults=supp_materials.yaml
+  else
+    echo >&2 "Exporting manuscript"
+    pandoc --verbose \
+      --data-dir="$PANDOC_DATA_DIR" \
+      --defaults=common.yaml \
+      --defaults=docx.yaml
+  fi
 fi
 
 # Create LaTeX output (if BUILD_LATEX environment variable equals "true")
